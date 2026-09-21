@@ -29,6 +29,24 @@ The mark is drawn edge to edge with no padding. Anywhere it needs breathing
 room — an app icon, a favicon, a profile picture — add roughly 15% around it
 rather than scaling it down inside the frame.
 
+## Play Console artwork
+
+`python3 make-store-assets.py` regenerates the developer-page assets from the
+mark. Both are RGB PNGs — 24-bit, no alpha, which is what Play asks for.
+
+| | |
+|---|---|
+| `store/superbits-logo-512.png` | 512×512 developer logo, ~7 KB |
+| `store/superbits-feature-4096.png` | 4096×2304 feature graphic, ~110 KB |
+
+PNG rather than JPEG on purpose: a composition this dark and this flat bands
+visibly under JPEG, and lossless still comes in at a tenth of the 1 MB limit.
+
+The eight grey cells are lighter here (`#3D4453`) than on the site
+(`#282D38`). On the site the mark is small and beside the wordmark, so it
+should recede; alone at 48px in a Play listing that same grey reads as a black
+square with a pink dot, and the grid disappears.
+
 ## Deploy
 
 GitHub Pages serves this repo at **superbits.in** — `CNAME` in the root is what
