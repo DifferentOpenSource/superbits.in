@@ -14,6 +14,21 @@ the product that is already live. Nothing more, on purpose.
 | `build-artifact.py` | regenerates `dist/artifact.html`, the body-only copy used for a Claude preview link. Optional; run it after editing if you use that preview. |
 | `dist/` | generated, git-ignored. Not what you deploy. |
 
+## Logo
+
+`logo/` holds the SuperBits mark — the same one in the site header.
+
+| | |
+|---|---|
+| `superbits-mark.svg` | the brand version: `#282D38` squares, `#FF2D6F` centre, transparent ground. Works on light and dark. |
+| `superbits-mark-mono.svg` | single colour via `currentColor` — inherits whatever colour you set, for stamps, favicons and one-colour print. |
+| `superbits-mark-512.png` | 512×512 raster with alpha, for anywhere SVG isn't accepted. |
+| `superspace-icon.png` | the SuperSpace app icon, inlined into the page as a data URI. |
+
+The mark is drawn edge to edge with no padding. Anywhere it needs breathing
+room — an app icon, a favicon, a profile picture — add roughly 15% around it
+rather than scaling it down inside the frame.
+
 ## Deploy
 
 ```bash
