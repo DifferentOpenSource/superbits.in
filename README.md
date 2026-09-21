@@ -1,26 +1,26 @@
 # superbits.in
 
-The SuperBits company site. One static page, no build step, no dependencies —
-`index.html` is the whole thing. Fonts come from Google Fonts; everything else
-is inline.
+The SuperBits site. One static page — `index.html` is the whole thing. No build
+step, no dependencies. Fonts come from Google Fonts; everything else is inline.
+
+It is a holding page: it says who we are, that more is coming, and points at
+the product that is already live. Nothing more, on purpose.
 
 ## Files
 
 | | |
 |---|---|
 | `index.html` | the site. Edit this and nothing else. |
-| `build-artifact.py` | regenerates `dist/artifact.html`, the body-only copy used for the Claude preview link. Run it after editing. |
-| `dist/` | generated. Not the thing you deploy. |
+| `build-artifact.py` | regenerates `dist/artifact.html`, the body-only copy used for a Claude preview link. Optional; run it after editing if you use that preview. |
+| `dist/` | generated, git-ignored. Not what you deploy. |
 
 ## Deploy
-
-Copy the page to the server and point nginx at it.
 
 ```bash
 scp index.html <user>@<server>:/var/www/superbits.in/index.html
 ```
 
-nginx server block (same box that already serves `app.superspace.superbits.in`):
+nginx, on the same box that already serves `app.superspace.superbits.in`:
 
 ```nginx
 server {
@@ -47,29 +47,20 @@ server {
 
 Certificate: `sudo certbot --nginx -d superbits.in -d www.superbits.in`.
 
-## What is claimed on this page
+## What the page claims
 
-Everything on it is true and checkable today:
-
-- **India, engineering company.** Stated, not embellished.
-- **SuperSpace, shipped, on Google Play.** Linked to the real listing.
-- **Own signaling and TURN servers, Postgres, transactional billing, an API
-  contract guard.** All of it is in the `samsaram-backend` repo.
-- **31 ms p95 ring-to-device at 1,000 concurrent sockets.** From our own load
-  test (`signaling-server/test/load.js`), single node. The page says so.
-
-Nothing about team size, funding, customer counts, awards or offices appears,
-because none of it could be substantiated. Add those when they are true.
+Only what can be checked today: that SuperBits is a technology company in
+India, and that SuperSpace is live on Google Play. No team size, funding,
+customer count, award or office appears anywhere, because none of it could be
+substantiated yet. Add them when they are true.
 
 ## Still to add
 
 - **Privacy policy and terms.** Google Play requires a privacy policy URL, and
-  this site is where it belongs — `superbits.in/privacy`. Currently missing
-  from the release checklist too.
-- **A company email.** The page uses `info.super.bits@gmail.com` because that
-  is the address already published in the app. `hello@superbits.in` on the
-  domain would read considerably better.
-- **A careers page**, once there is a role to name. The contact section stands
-  in for it.
-- **An OG image** at `/og.png` (1200×630) so shared links preview properly. The
-  meta tags are in place and pointing at nothing yet.
+  this domain is where it belongs — `superbits.in/privacy`. Still open on the
+  SuperSpace release checklist, so this site unblocks the store listing.
+- **A company email.** The page uses `info.super.bits@gmail.com`, the address
+  already published in the app. `hello@superbits.in` on the domain would read
+  considerably better.
+- **An OG image** at `/og.png`, 1200×630. The meta tags are in place and
+  currently point at nothing, so shared links preview blank.

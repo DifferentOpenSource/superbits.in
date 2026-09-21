@@ -4,37 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SuperBits</title>
-<meta name="description" content="SuperBits is an engineering company in India. We build consumer products on infrastructure we own and run ourselves.">
+<meta name="description" content="SuperBits is a technology company. We build consumer products and the infrastructure they run on.">
 <meta property="og:title" content="SuperBits">
-<meta property="og:description" content="An engineering company in India, building consumer products on infrastructure we own and run ourselves.">
+<meta property="og:description" content="A technology company. We build consumer products and the infrastructure they run on.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://superbits.in/">
-<meta name="theme-color" content="#07080B">
+<meta name="theme-color" content="#08090C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
 :root{
-  --ink:#07080B;
-  --panel:#0F1116;
-  --panel-2:#13161C;
-  --line:#1C2029;
-  --text:#E8EAEF;
-  --muted:#878E9D;
+  --ink:#08090C;
+  --panel:#101217;
+  --line:#1B1F27;
+  --text:#E9EBF0;
+  --muted:#858B99;
   --signal:#FF2D6F;
-  --live:#34D399;
   --gutter:24px;
-  --col:62ch;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
   background:var(--ink);
   color:var(--text);
   font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
   font-size:17px;
-  line-height:1.62;
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
@@ -42,152 +42,77 @@ a{color:inherit}
 ::selection{background:var(--signal);color:#fff}
 :focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
 
-.wrap{width:100%;max-width:1080px;margin:0 auto;padding-inline:var(--gutter)}
-.prose{max-width:var(--col)}
+.wrap{width:100%;max-width:960px;margin:0 auto;padding-inline:var(--gutter)}
 
-/* ---- type roles ---- */
 .mono{
   font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
 }
-h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.06;text-wrap:balance}
-h1{font-size:clamp(34px,7.2vw,68px)}
-h2{font-size:clamp(26px,4.4vw,40px);letter-spacing:-.02em;line-height:1.12}
-h3{font-size:19px;letter-spacing:-.01em;line-height:1.25}
-p{margin:0}
-.lede{font-size:clamp(17px,2.1vw,20px);color:var(--muted);line-height:1.6}
-.dim{color:var(--muted)}
-strong{font-weight:600;color:var(--text)}
 
 /* ---- header ---- */
-header{
-  position:sticky;top:0;z-index:20;
-  background:color-mix(in srgb,var(--ink) 86%,transparent);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
-.mark{display:flex;align-items:center;gap:10px;text-decoration:none}
+header{padding-block:22px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mark{display:flex;align-items:center;gap:11px;text-decoration:none}
 .mark svg{display:block;flex:none}
-.mark span{font-weight:800;letter-spacing:.02em;font-size:15px}
-.navlinks{display:flex;align-items:center;gap:22px}
-.navlinks a{color:var(--muted);text-decoration:none;transition:color .15s}
-.navlinks a:hover{color:var(--text)}
-@media (max-width:620px){.navlinks a:not(.cta){display:none}}
-.cta{
-  color:var(--text)!important;border:1px solid var(--line);
-  padding:7px 14px;border-radius:999px;background:var(--panel);
-}
-.cta:hover{border-color:var(--signal)}
+.mark span{font-weight:700;letter-spacing:.06em;font-size:14px}
+.bar a.contact{color:var(--muted);text-decoration:none;transition:color .15s}
+.bar a.contact:hover{color:var(--text)}
 
-/* ---- hero ---- */
-.hero{padding:clamp(56px,11vw,116px) 0 clamp(40px,7vw,72px)}
-.eyebrow{display:flex;align-items:center;gap:9px;color:var(--signal);margin-bottom:26px}
-.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--signal);flex:none;
-  box-shadow:0 0 0 0 color-mix(in srgb,var(--signal) 70%,transparent);animation:ping 2.4s ease-out infinite}
-@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--signal) 55%,transparent)}
-  70%,100%{box-shadow:0 0 0 9px transparent}}
-.hero h1{margin-bottom:26px}
-.hero h1 em{font-style:normal;color:var(--signal)}
-.hero .lede{max-width:56ch}
-
-/* ---- signal path panel ---- */
-.readout{
-  margin-top:clamp(36px,6vw,60px);
-  border:1px solid var(--line);border-radius:14px;
-  background:linear-gradient(180deg,var(--panel-2),var(--panel));
-  overflow:hidden;
+/* ---- statement ---- */
+main{flex:1;display:flex;align-items:center;padding-block:clamp(64px,14vh,140px)}
+.eyebrow{color:var(--muted);display:block;margin-bottom:28px}
+h1{
+  margin:0 0 24px;
+  font-weight:700;
+  font-size:clamp(32px,6vw,58px);
+  line-height:1.1;
+  letter-spacing:-.025em;
+  max-width:16ch;
+  text-wrap:balance;
 }
-.readout-head{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-  padding:13px 18px;border-bottom:1px solid var(--line);color:var(--muted);
-}
-.live{display:inline-flex;align-items:center;gap:7px;color:var(--live)}
-.live i{width:6px;height:6px;border-radius:50%;background:var(--live);flex:none}
-.path{display:flex;align-items:flex-start;gap:0;padding:26px 18px 22px;overflow-x:auto}
-.hop{flex:1 1 0;min-width:76px;display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center}
-.node{
-  width:13px;height:13px;border-radius:50%;background:var(--panel);
-  border:2px solid var(--muted);position:relative;flex:none;
-}
-.hop:last-child .node{border-color:var(--signal);background:var(--signal)}
-.noderow{display:flex;align-items:center;justify-content:center;width:100%;position:relative}
-.noderow::before,.noderow::after{content:"";flex:1;height:1px;background:var(--line)}
-.hop:first-child .noderow::before,.hop:last-child .noderow::after{background:transparent}
-.hop b{font-weight:600;font-size:13px;letter-spacing:-.01em}
-.hop .t{color:var(--signal)}
-.readout-foot{padding:0 18px 18px;color:var(--muted);font-size:13px;line-height:1.5}
+.lede{margin:0;color:var(--muted);font-size:clamp(16px,1.9vw,19px);line-height:1.6;max-width:52ch}
 
-/* ---- bands ---- */
-section{border-top:1px solid var(--line)}
-.band{padding:clamp(52px,9vw,96px) 0}
-.tag{color:var(--signal);margin-bottom:20px;display:block}
-.stack{display:flex;flex-direction:column;gap:18px}
-
-/* ---- product ---- */
+/* ---- currently shipping ---- */
+.shipping{border-top:1px solid var(--line);padding-block:clamp(28px,5vw,40px)}
+.shipping .mono{color:var(--muted);display:block;margin-bottom:20px}
 .product{
-  margin-top:36px;border:1px solid var(--line);border-radius:14px;background:var(--panel);
-  padding:clamp(22px,4vw,32px);
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  text-decoration:none;color:inherit;
+  border:1px solid var(--line);border-radius:12px;background:var(--panel);
+  padding:18px 20px;transition:border-color .16s;
 }
-.product-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.product:hover{border-color:#2C313C}
 .glyph{
-  width:44px;height:44px;border-radius:12px;flex:none;
-  background:linear-gradient(135deg,#FF2D6F,#A21CAF);
-  display:grid;place-items:center;font-weight:800;color:#fff;font-size:19px;
+  width:42px;height:42px;border-radius:11px;flex:none;
+  background:linear-gradient(140deg,#FF2D6F,#9D1C8F);
+  display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;
 }
-.shipped{margin-left:auto;color:var(--live);border:1px solid color-mix(in srgb,var(--live) 35%,transparent);
-  border-radius:999px;padding:4px 11px}
-.product p{color:var(--muted);max-width:58ch}
-.speclist{
-  list-style:none;margin:22px 0 0;padding:20px 0 0;border-top:1px solid var(--line);
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px 24px;
+.product .copy{flex:1 1 220px;min-width:0}
+.product .name{display:block;font-weight:600;font-size:17px;letter-spacing:-.01em}
+.product .what{display:block;margin-top:2px;color:var(--muted);font-size:14.5px;line-height:1.45}
+.product .go{
+  margin-left:auto;display:inline-flex;align-items:center;gap:7px;
+  color:var(--muted);white-space:nowrap;
 }
-.speclist dt{margin-bottom:5px;color:var(--text)}
-.speclist dd{margin:0;color:var(--muted);font-size:13.5px;line-height:1.45}
-.storelink{
-  display:inline-flex;align-items:center;gap:8px;margin-top:22px;text-decoration:none;
-  color:var(--text);border-bottom:1px solid var(--signal);padding-bottom:2px;font-weight:500;
+.product:hover .go{color:var(--text)}
+@media (max-width:560px){
+  .product .go{margin-left:0;width:100%;padding-top:4px}
 }
-.storelink:hover{color:var(--signal)}
-
-/* ---- principles ---- */
-.rules{list-style:none;margin:40px 0 0;padding:0;display:grid;gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.rules li{background:var(--panel);padding:clamp(20px,3.5vw,28px)}
-.rules h3{margin-bottom:9px}
-.rules p{color:var(--muted);font-size:15.5px;line-height:1.58;max-width:62ch}
-.rules .mono{color:var(--signal);display:block;margin-bottom:12px}
-@media (min-width:760px){.rules{grid-template-columns:1fr 1fr}}
-
-/* ---- contact ---- */
-.contact{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
-.btn{
-  display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;
-  padding:13px 22px;border-radius:999px;font-size:15px;
-}
-.btn.primary{background:var(--signal);color:#fff}
-.btn.primary:hover{background:#ff5187}
-.btn.ghost{border:1px solid var(--line);color:var(--text);background:var(--panel)}
-.btn.ghost:hover{border-color:var(--muted)}
 
 /* ---- footer ---- */
-footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted)}
-.footrow{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted)}
+.footrow{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
 .footrow a{text-decoration:none}
 .footrow a:hover{color:var(--text)}
-
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap bar">
-    <a class="mark" href="#top" aria-label="SuperBits, home">
+    <span class="mark">
       <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-        <g fill="#2A2F3A">
+        <g fill="#282D38">
           <rect x="0" y="0" width="5" height="5" rx="1"/><rect x="7.5" y="0" width="5" height="5" rx="1"/><rect x="15" y="0" width="5" height="5" rx="1"/>
           <rect x="0" y="7.5" width="5" height="5" rx="1"/><rect x="15" y="7.5" width="5" height="5" rx="1"/>
           <rect x="0" y="15" width="5" height="5" rx="1"/><rect x="7.5" y="15" width="5" height="5" rx="1"/><rect x="15" y="15" width="5" height="5" rx="1"/>
@@ -195,195 +120,44 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted)}
         <rect x="7.5" y="7.5" width="5" height="5" rx="1" fill="#FF2D6F"/>
       </svg>
       <span>SUPERBITS</span>
-    </a>
-    <nav class="navlinks">
-      <a href="#products">Products</a>
-      <a href="#engineering">Engineering</a>
-      <a class="cta" href="#contact">Get in touch</a>
-    </nav>
+    </span>
+    <a class="contact mono" href="mailto:info.super.bits@gmail.com">Contact</a>
   </div>
 </header>
 
-<main id="top">
-
-  <div class="wrap hero">
-    <span class="mono eyebrow"><i></i>An engineering company · India</span>
-    <h1>We build for a billion people who were never the <em>default user</em>.</h1>
+<main>
+  <div class="wrap">
+    <span class="mono eyebrow">Technology company · India</span>
+    <h1>We&rsquo;re a technology company. The rest is coming.</h1>
     <p class="lede">
-      Most software is designed somewhere else first and translated later — for a fast phone,
-      a stable network, a card that always works. We start from the other end.
+      SuperBits builds consumer products and the infrastructure they run on.
+      More to show here shortly.
     </p>
-
-    <!-- The hero graphic is the work itself: the path a live call actually takes
-         through our own infrastructure, with the timings we measured on it. -->
-    <div class="readout">
-      <div class="readout-head">
-        <span class="mono">Signal path · one live call</span>
-        <span class="mono live"><i></i>Infrastructure we run</span>
-      </div>
-      <div class="path">
-        <div class="hop">
-          <div class="noderow"><span class="node"></span></div>
-          <b>App</b>
-        </div>
-        <div class="hop">
-          <div class="noderow"><span class="node"></span></div>
-          <b>Signaling</b>
-        </div>
-        <div class="hop">
-          <div class="noderow"><span class="node"></span></div>
-          <b>TURN relay</b>
-        </div>
-        <div class="hop">
-          <div class="noderow"><span class="node"></span></div>
-          <b>Their phone</b><span class="mono t">31 ms</span>
-        </div>
-      </div>
-      <p class="readout-foot">
-        p95 ring-to-device, measured on a single node holding 1,000 concurrent
-        sockets. No managed real-time SDK anywhere on that path.
-      </p>
-    </div>
   </div>
-
-  <section id="products">
-    <div class="wrap band">
-      <span class="mono tag">What we build</span>
-      <div class="stack prose">
-        <h2>Consumer products, shipped end to end.</h2>
-        <p class="dim">
-          One team writes the app, the server, the billing and the deploy. Nobody hands a
-          problem across a boundary and hopes.
-        </p>
-      </div>
-
-      <article class="product">
-        <div class="product-top">
-          <span class="glyph" aria-hidden="true">S</span>
-          <div>
-            <h3>SuperSpace</h3>
-            <span class="mono dim">Live consultation · Android</span>
-          </div>
-          <span class="mono shipped">Shipped</span>
-        </div>
-        <p>
-          Talk to someone who knows, right now. Voice or video, one to one, billed by the
-          minute — the person who answers is paid by the minute too. No appointment, no
-          subscription, no waiting room.
-        </p>
-        <dl class="speclist">
-          <div><dt class="mono">Real time</dt><dd>WebRTC over our own signaling and relay servers</dd></div>
-          <div><dt class="mono">Money</dt><dd>Every balance change is a locked SQL transaction</dd></div>
-          <div><dt class="mono">Reach</dt><dd>Rings a killed app through push, answers on the lock screen</dd></div>
-          <div><dt class="mono">Payments</dt><dd>UPI and cards, settled in rupees</dd></div>
-        </dl>
-        <a class="storelink" href="https://play.google.com/store/apps/details?id=com.superbits.superspace.app" target="_blank" rel="noopener">
-          Get it on Google Play
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </article>
-
-      <p class="dim" style="margin-top:26px;max-width:var(--col)">
-        It is the first thing we have shipped. It is not the last.
-      </p>
-    </div>
-  </section>
-
-  <section id="engineering">
-    <div class="wrap band">
-      <span class="mono tag">How we build</span>
-      <div class="stack prose">
-        <h2>We own the parts that are hard to own.</h2>
-        <p class="dim">
-          Renting the difficult pieces is faster for a quarter and fatal for a decade. The
-          margin, the latency and the failure modes all live in the parts you cannot see
-          into — so we run them.
-        </p>
-      </div>
-
-      <ul class="rules">
-        <li>
-          <span class="mono">01 — Infrastructure</span>
-          <h3>Our own servers carry the calls</h3>
-          <p>
-            Signaling, presence and the TURN relay are ours, on hardware we pay for. A
-            per-minute product cannot survive a per-minute vendor, and you cannot debug a
-            dropped call through somebody else's API.
-          </p>
-        </li>
-        <li>
-          <span class="mono">02 — Correctness</span>
-          <h3>Money moves inside a transaction</h3>
-          <p>
-            Balances are rows in Postgres, changed under a lock, with payments keyed so the
-            same rupee cannot land twice. Where money is involved, eventually consistent is
-            another way of saying sometimes wrong.
-          </p>
-        </li>
-        <li>
-          <span class="mono">03 — Compatibility</span>
-          <h3>We cannot update a phone we already shipped</h3>
-          <p>
-            Every deploy is checked against a recorded contract of what installed builds
-            depend on. If a change would break a version already on someone's phone, the
-            deploy stops before it reaches them.
-          </p>
-        </li>
-        <li>
-          <span class="mono">04 — Evidence</span>
-          <h3>Measured, then claimed</h3>
-          <p>
-            The number at the top of this page came off a load test, not a slide. We would
-            rather publish a figure we can reproduce than a superlative we cannot.
-          </p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="next">
-    <div class="wrap band">
-      <span class="mono tag">Where this goes</span>
-      <div class="stack prose">
-        <h2>Consumer products fund the hard problems.</h2>
-        <p class="dim">
-          Real-time media that survives a congested cell tower. Models small enough to run on
-          a phone that cost eight thousand rupees. Payments, identity and trust for people
-          whose first computer was the one in their pocket.
-        </p>
-        <p class="dim">
-          None of these are solved, and none of them get solved by people who have never had
-          to live with the constraint. We have. That is the whole thesis.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap band">
-      <span class="mono tag">Work with us</span>
-      <div class="stack prose">
-        <h2>We are small. That is the offer.</h2>
-        <p class="dim">
-          Whatever you build here goes to real users with real money in it, and your name is
-          on it. If you want that, or you want to work with us on something, write to us —
-          a person reads every one.
-        </p>
-      </div>
-      <div class="contact">
-        <a class="btn primary" href="mailto:info.super.bits@gmail.com">Email us</a>
-        <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.superbits.superspace.app" target="_blank" rel="noopener">Try SuperSpace</a>
-      </div>
-    </div>
-  </section>
-
 </main>
+
+<div class="shipping">
+  <div class="wrap">
+    <span class="mono">Currently shipping</span>
+    <a class="product" href="https://play.google.com/store/apps/details?id=com.superbits.superspace.app" target="_blank" rel="noopener">
+      <span class="glyph" aria-hidden="true">S</span>
+      <span class="copy">
+        <span class="name">SuperSpace</span>
+        <span class="what">Live one-to-one voice and video consultation, billed by the minute.</span>
+      </span>
+      <span class="go mono">
+        Google&nbsp;Play
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </a>
+  </div>
+</div>
 
 <footer>
   <div class="wrap footrow">
-    <span class="mono">SuperBits · India</span>
+    <span class="mono">SuperBits &middot; India</span>
     <span class="mono"><a href="mailto:info.super.bits@gmail.com">info.super.bits@gmail.com</a></span>
   </div>
 </footer>
