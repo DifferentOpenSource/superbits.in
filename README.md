@@ -64,3 +64,5 @@ substantiated yet. Add them when they are true.
   considerably better.
 - **An OG image** at `/og.png`, 1200×630. The meta tags are in place and
   currently point at nothing, so shared links preview blank.
+
+  bigrock domain
