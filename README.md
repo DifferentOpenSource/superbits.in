@@ -31,11 +31,29 @@ rather than scaling it down inside the frame.
 
 ## Deploy
 
+GitHub Pages serves this repo at **superbits.in** — `CNAME` in the root is what
+binds the domain, and `.nojekyll` stops Pages running the page through Jekyll.
+Push to `main` and the site updates; there is nothing else to do.
+
+Settings → Pages: source `main` / `/ (root)`, custom domain `superbits.in`,
+Enforce HTTPS on.
+
+DNS at BigRock, for the apex and `www`:
+
+```
+A     @     185.199.108.153
+A     @     185.199.109.153
+A     @     185.199.110.153
+A     @     185.199.111.153
+CNAME www   differentopensource.github.io.
+```
+
+<details>
+<summary>Self-hosting instead, on the box that runs app.superspace.superbits.in</summary>
+
 ```bash
 scp index.html <user>@<server>:/var/www/superbits.in/index.html
 ```
-
-nginx, on the same box that already serves `app.superspace.superbits.in`:
 
 ```nginx
 server {
@@ -61,6 +79,7 @@ server {
 ```
 
 Certificate: `sudo certbot --nginx -d superbits.in -d www.superbits.in`.
+</details>
 
 ## What the page claims
 
