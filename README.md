@@ -1,6 +1,6 @@
 # superbits.in
 
-The SuperBits site. One static page — `index.html` is the whole thing. No build
+The SuperBits Labs site. One static page — `index.html` is the whole thing. No build
 step, no dependencies. Fonts come from Google Fonts; everything else is inline.
 
 It is a holding page: it says who we are, that more is coming, and points at
