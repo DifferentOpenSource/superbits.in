@@ -14,6 +14,30 @@ the product that is already live. Nothing more, on purpose.
 | `build-artifact.py` | regenerates `dist/artifact.html`, the body-only copy used for a Claude preview link. Optional; run it after editing if you use that preview. |
 | `dist/` | generated, git-ignored. Not what you deploy. |
 
+## The sky
+
+The background is a canvas starfield — three depth layers drifting slowly,
+twinkling, and shifting under the cursor, with stars near the pointer
+brightening. It sits behind everything at `z-index: 0` and takes no pointer
+events, so it can never intercept a click.
+
+The knobs are at the top of the script in `index.html`:
+
+| | |
+|---|---|
+| `LAYERS` | per-depth `size`, `alpha`, `drift` and `twinkle`. Raise `alpha` for a louder sky. |
+| `REACH` | how far from the cursor stars respond, in px |
+| `SHIFT` | how far the nearest layer parallaxes, in px |
+| `w * h / 5200` | star density. Smaller divisor, more stars; capped at 260. |
+
+Three things it does deliberately: `prefers-reduced-motion` gets a still sky
+rather than no sky, the cursor is ignored on touch screens because there is no
+hover to speak of, and a hidden tab stops animating entirely.
+
+`node test-sky.js` drives the script against a stub canvas and checks what it
+tries to paint. The failure mode here is silent — one NaN coordinate and the
+sky just doesn't draw, which looks identical to a plain black page.
+
 ## Logo
 
 `logo/` holds the SuperBits mark — the same one in the site header.
