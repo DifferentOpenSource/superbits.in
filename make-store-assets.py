@@ -81,10 +81,9 @@ def width_of(draw, text, font, tracking=0):
     return sum(draw.textlength(c, font=font) for c in text) + tracking * (len(text) - 1)
 
 
-def logo():
-    """512x512. Padded to about 15% so it survives being masked into a circle
-    or a squircle, which Play does in some placements."""
-    size, inset = 512, 0.625
+def logo(size=512, inset=0.625):
+    """The mark on its own ground. Padded so it survives being masked into a
+    circle or a squircle, which both Play and iOS do."""
     img = Image.new("RGB", (size, size), "#0B0D12")
     art = mark(round(size * inset))
     at = (size - art.width) // 2
@@ -129,8 +128,15 @@ def feature():
 
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
-    for name, image in (("superbits-logo-512", logo()), ("superbits-feature-4096", feature())):
-        path = OUT / f"{name}.png"
+    assets = [
+        (OUT / "superbits-logo-512.png", logo()),
+        (OUT / "superbits-feature-4096.png", feature()),
+        # iOS home screen. Square, because iOS applies its own rounding — and
+        # at the root, where Safari looks for it whether or not it is linked.
+        # Tighter inset than Play's so it matches the favicon in index.html.
+        (pathlib.Path("apple-touch-icon.png"), logo(180, inset=0.80)),
+    ]
+    for path, image in assets:
         image.save(path, "PNG", optimize=True)
         kb = path.stat().st_size / 1024
         assert image.mode == "RGB", f"{path} must have no alpha channel"
