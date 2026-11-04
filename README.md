@@ -47,7 +47,7 @@ sky just doesn't draw, which looks identical to a plain black page.
 | `superbits-mark.svg` | the brand version: `#282D38` squares, `#FF2D6F` centre, transparent ground. Works on light and dark. |
 | `superbits-mark-mono.svg` | single colour via `currentColor` — inherits whatever colour you set, for stamps, favicons and one-colour print. |
 | `superbits-mark-512.png` | 512×512 raster with alpha, for anywhere SVG isn't accepted. |
-| `superspace-icon.png` | the SuperSpace app icon, inlined into the page as a data URI. |
+| `bloomlet-icon.png` | the Bloomlet app icon, inlined into the page as a data URI. |
 
 The mark is drawn edge to edge with no padding. Anywhere it needs breathing
 room — an app icon, a favicon, a profile picture — add roughly 15% around it
@@ -125,8 +125,8 @@ Certificate: `sudo certbot --nginx -d superbits.in -d www.superbits.in`.
 
 ## What the page claims
 
-Only what can be checked today: that SuperBits is a technology company in
-India, and that SuperSpace is live on Google Play. No team size, funding,
+Only what can be checked today: that SuperBits Labs is a technology company
+in India, and that Bloomlet is live at bloomlet.superbits.in. No team size, funding,
 customer count, award or office appears anywhere, because none of it could be
 substantiated yet. Add them when they are true.
 
@@ -134,7 +134,7 @@ substantiated yet. Add them when they are true.
 
 - **Privacy policy and terms.** Google Play requires a privacy policy URL, and
   this domain is where it belongs — `superbits.in/privacy`. Still open on the
-  SuperSpace release checklist, so this site unblocks the store listing.
+  Bloomlet release checklist, so this site unblocks the store listing.
 - **A company email.** The page uses `info.super.bits@gmail.com`, the address
   already published in the app. `hello@superbits.in` on the domain would read
   considerably better.
