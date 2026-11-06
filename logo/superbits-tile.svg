@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="SuperBits Labs">
+  <title>SuperBits Labs</title>
+  <rect width="1024" height="1024" rx="225.28" fill="#0B0D12"/>
+  <rect x="102.4" y="102.4" width="204.8" height="204.8" rx="40.96" fill="#3D4453"/>
+  <rect x="409.6" y="102.4" width="204.8" height="204.8" rx="40.96" fill="#3D4453"/>
+  <rect x="716.8" y="102.4" width="204.8" height="204.8" rx="40.96" fill="#3D4453"/>
+  <rect x="102.4" y="409.6" width="204.8" height="204.8" rx="40.96" fill="#3D4453"/>
+  <rect x="409.6" y="409.6" width="204.8" height="204.8" rx="40.96" fill="#FF2D6F"/>
+  <rect x="716.8" y="409.6" width="204.8" height="204.8" rx="40.96" fill="#3D4453"/>
+  <rect x="102.4" y="716.8" width="204.8" height="204.8" rx="40.96" fill="#3D4453"/>
+  <rect x="409.6" y="716.8" width="204.8" height="204.8" rx="40.96" fill="#3D4453"/>
+  <rect x="716.8" y="716.8" width="204.8" height="204.8" rx="40.96" fill="#3D4453"/>
+</svg>
