@@ -97,9 +97,13 @@ h1{
 
 /* ---- footer ---- */
 footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted)}
-.footrow{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.footrow{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
 .footrow a{text-decoration:none}
 .footrow a:hover{color:var(--text)}
+/* Stacked rather than strung along one line: a second channel will want a
+   third row, and left-aligned so the shorter one isn't left floating when
+   the footer wraps on a phone. */
+.footlinks{display:flex;flex-direction:column;gap:6px}
 </style>
 </head>
 <body>
@@ -150,7 +154,10 @@ footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted)}
 <footer>
   <div class="wrap footrow">
     <span class="mono">SuperBits Labs &middot; India</span>
-    <span class="mono"><a href="mailto:info.super.bits@gmail.com">info.super.bits@gmail.com</a></span>
+    <span class="mono footlinks">
+      <a href="mailto:info.super.bits@gmail.com">info.super.bits@gmail.com</a>
+      <a href="https://www.youtube.com/@SuperbitsLabs" target="_blank" rel="noopener">YouTube</a>
+    </span>
   </div>
 </footer>
 
