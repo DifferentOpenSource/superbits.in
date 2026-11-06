@@ -69,16 +69,23 @@ as the tile, so it costs no request and stays crisp at any size.
 ignores a data URI there. It comes from `make-store-assets.py`, which shares
 its drawing code with the Play logo.
 
-## Play Console artwork
+## Generated artwork
 
-`python3 make-store-assets.py` regenerates the developer-page assets from the
-mark. Both are RGB PNGs — 24-bit, no alpha, which is what Play asks for.
+`python3 make-store-assets.py` regenerates every raster asset from the mark.
+All RGB PNGs — 24-bit, no alpha, which is what Play asks for.
 
 | | |
 |---|---|
 | `store/superbits-logo-512.png` | 512×512 developer logo, ~7 KB |
 | `store/superbits-feature-4096.png` | 4096×2304 feature graphic, ~110 KB |
+| `store/superbits-youtube-banner.png` | 2560×1440 channel art, ~330 KB |
 | `apple-touch-icon.png` | 180×180 iOS home-screen icon, in the root where Safari looks for it |
+
+YouTube crops channel art differently on every surface and only the centre
+**1546×423** survives on all of them — a phone sees that and nothing else. The
+lockup is sized to sit inside that box with room to spare, and the starfield
+is what the wider crops get. `youtube()` asserts the fit, because a banner
+whose name is cut in half on mobile is the usual way this asset goes wrong.
 
 PNG rather than JPEG on purpose: a composition this dark and this flat bands
 visibly under JPEG, and lossless still comes in at a tenth of the 1 MB limit.

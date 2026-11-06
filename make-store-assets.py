@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
-"""Play Console developer-page artwork, drawn from the SuperBits mark.
+"""Raster artwork, drawn from the SuperBits mark.
 
-Google asks for both assets as JPEG or 24-bit PNG with no transparency, under
-1 MB. These are written as RGB PNGs — lossless, genuinely 24-bit, and a flat
-dark composition compresses to a fraction of the limit, where JPEG would band
-across the large near-black areas.
+Everything here is written as an RGB PNG: lossless, genuinely 24-bit, no alpha
+channel — which is what Play asks for — and a composition this dark and this
+flat bands visibly under JPEG while lossless still comes in far under every
+size limit involved.
 
     python3 make-store-assets.py
 
-    store/superbits-logo-512.png         512 x 512
-    store/superbits-feature-4096.png    4096 x 2304
+    store/superbits-logo-512.png         512 x 512     Play developer logo
+    store/superbits-feature-4096.png    4096 x 2304    Play feature graphic
+    store/superbits-youtube-banner.png  2560 x 1440    YouTube channel art
+    apple-touch-icon.png                 180 x 180     iOS home screen
 
 The brand fonts are fetched from Google Fonts on first run and cached in
 store/.fonts/ — the same faces the site loads, so the artwork and the website
 are set in one typeface rather than two that nearly match.
 """
 import pathlib
+import random
 import subprocess
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
@@ -126,11 +129,88 @@ def feature():
     return img
 
 
+def starfield(img, density=26000, seed=7):
+    """The site's sky, in a still frame. Seeded, so the banner is the same
+    picture every time it is regenerated rather than a new one to re-approve."""
+    w, h = img.size
+    rng = random.Random(seed)
+    sky = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(sky)
+    for _ in range(w * h // density):
+        x, y = rng.uniform(0, w), rng.uniform(0, h)
+        r = rng.uniform(1.2, 4.0)
+        a = int(rng.uniform(40, 150))
+        # A handful carry the brand colour, as on the site.
+        tint = (255, 45, 111, a) if rng.random() < 0.07 else (233, 235, 240, a)
+        draw.ellipse([x - r, y - r, x + r, y + r], fill=tint)
+    return Image.alpha_composite(img.convert("RGBA"), sky).convert("RGB")
+
+
+def youtube(scale=2):
+    """2560x1440 channel art.
+
+    YouTube shows a different crop on every surface and only the centre
+    1546x423 is safe on all of them — a phone sees that and nothing else. So
+    the lockup is sized to fit inside that box with room to spare, and the
+    starfield is what the wider crops get. The assert at the end is the point
+    of writing it this way: a banner whose name is cut in half on mobile is
+    the single most common way this asset goes wrong.
+    """
+    w, h = 2560 * scale, 1440 * scale
+    safe_w, safe_h = 1546 * scale, 423 * scale
+
+    img = Image.new("RGB", (w, h), "#08090C")
+    bloom = ImageOps.invert(Image.radial_gradient("L")).resize((w, h), Image.LANCZOS)
+    img.paste(Image.new("RGB", (w, h), ACCENT), (0, 0), bloom.point(lambda v: int(v * 0.12)))
+    img = starfield(img, density=26000 // (scale * scale))
+
+    draw = ImageDraw.Draw(img)
+    name, label = "SUPERBITS LABS", "TECHNOLOGY COMPANY · INDIA"
+
+    # Solve for the type size that makes the lockup the width we want, rather
+    # than guessing a size and hoping it lands inside the safe box.
+    target = safe_w * 0.76
+    probe = face("archivo.ttf", 100)
+    unit = (width_of(draw, name, probe, 3.3) + 100 * 1.008 + 100 * 0.32) / 100
+    size = round(target / unit)
+
+    word = face("archivo.ttf", size)
+    small = face("jbmono.ttf", round(size * 0.21))
+    track = size * 0.033
+    name_w = width_of(draw, name, word, track)
+    top, bottom = word.getbbox(name)[1], word.getbbox(name)[3]
+    cap = bottom - top
+    glyph = round(cap * 1.40)
+    gap = round(size * 0.32)
+
+    block = glyph + gap + name_w
+    label_track = size * 0.07
+    label_w = width_of(draw, label, small, label_track)
+    label_gap = round(size * 0.42)
+    label_h = small.getbbox(label)[3] - small.getbbox(label)[1]
+
+    total_h = glyph + label_gap + label_h
+    left = (w - block) / 2
+    top_y = (h - total_h) / 2
+
+    art = mark(glyph)
+    img.paste(art, (round(left), round(top_y)), art)
+    tracked(draw, (left + glyph + gap, top_y + (glyph - cap) / 2 - top), name, word, "#E9EBF0", track)
+    tracked(draw, ((w - label_w) / 2, top_y + glyph + label_gap), label, small, "#858B99", label_track)
+
+    # Nothing that has to be read may leave the box a phone can see.
+    assert max(block, label_w) <= safe_w, f"lockup is {max(block, label_w):.0f}px, safe width is {safe_w}"
+    assert total_h <= safe_h, f"lockup is {total_h:.0f}px tall, safe height is {safe_h}"
+
+    return img.resize((2560, 1440), Image.LANCZOS)
+
+
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
     assets = [
         (OUT / "superbits-logo-512.png", logo()),
         (OUT / "superbits-feature-4096.png", feature()),
+        (OUT / "superbits-youtube-banner.png", youtube()),
         # iOS home screen. Square, because iOS applies its own rounding — and
         # at the root, where Safari looks for it whether or not it is linked.
         # Tighter inset than Play's so it matches the favicon in index.html.
@@ -140,5 +220,6 @@ if __name__ == "__main__":
         image.save(path, "PNG", optimize=True)
         kb = path.stat().st_size / 1024
         assert image.mode == "RGB", f"{path} must have no alpha channel"
-        assert kb < 1024, f"{path} is {kb:.0f} KB, over Play's 1 MB limit"
+        ceiling = 6 * 1024 if "youtube" in path.name else 1024
+        assert kb < ceiling, f"{path} is {kb:.0f} KB, over the {ceiling // 1024} MB limit"
         print(f"{path}  {image.width}x{image.height}  {kb:.0f} KB")
