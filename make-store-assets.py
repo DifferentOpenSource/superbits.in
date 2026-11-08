@@ -54,7 +54,7 @@ def face(name, size):
     return ImageFont.truetype(str(path), size)
 
 
-def mark(size, supersample=4):
+def mark(size, cells=None, supersample=4):
     """The 3x3 grid as an RGBA tile. Drawn large and reduced, because rounded
     corners at this radius alias badly when drawn at final size."""
     n = size * supersample
@@ -66,7 +66,7 @@ def mark(size, supersample=4):
         draw.rounded_rectangle(
             [col * unit, row * unit, (col + 5) * unit, (row + 5) * unit],
             radius=unit,
-            fill=ACCENT if lit else CELL,
+            fill=ACCENT if lit else (cells or CELL),
         )
     return tile.resize((size, size), Image.LANCZOS)
 
@@ -84,11 +84,11 @@ def width_of(draw, text, font, tracking=0):
     return sum(draw.textlength(c, font=font) for c in text) + tracking * (len(text) - 1)
 
 
-def logo(size=512, inset=0.625):
+def logo(size=512, inset=0.625, ground="#0B0D12", cells=None):
     """The mark on its own ground. Padded so it survives being masked into a
-    circle or a squircle, which both Play and iOS do."""
-    img = Image.new("RGB", (size, size), "#0B0D12")
-    art = mark(round(size * inset))
+    circle or a squircle, which Play, YouTube and iOS all do."""
+    img = Image.new("RGB", (size, size), ground)
+    art = mark(round(size * inset), cells)
     at = (size - art.width) // 2
     img.paste(art, (at, at), art)
     return img
@@ -209,6 +209,10 @@ if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
     assets = [
         (OUT / "superbits-logo-512.png", logo()),
+        # The same avatar on white, for profiles that sit on a light page.
+        # #2A2F3A rather than the dark version's #3D4453: the grey has to work
+        # against white now, and the lighter value goes thin and washed there.
+        (OUT / "superbits-logo-512-light.png", logo(ground="#FFFFFF", cells="#2A2F3A")),
         (OUT / "superbits-feature-4096.png", feature()),
         (OUT / "superbits-youtube-banner.png", youtube()),
         # iOS home screen. Square, because iOS applies its own rounding — and
