@@ -12,8 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
 
-const html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
-const source = /<script>([\s\S]*?)<\/script>/.exec(html)[1];
+const source = fs.readFileSync(path.join(__dirname, 'sky.js'), 'utf8');
 
 function run({ reduceMotion = false, finePointer = true, width = 1440, height = 900 } = {}) {
   const drawn = [];

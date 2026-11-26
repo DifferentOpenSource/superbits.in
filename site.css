@@ -1,0 +1,111 @@
+:root{
+  --ink:#08090C;
+  --panel:#101217;
+  --line:#1B1F27;
+  --text:#E9EBF0;
+  --muted:#858B99;
+  --signal:#FF2D6F;
+  --gutter:24px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  background:var(--ink);
+  color:var(--text);
+  font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit}
+::selection{background:var(--signal);color:#fff}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+
+.wrap{width:100%;max-width:960px;margin:0 auto;padding-inline:var(--gutter)}
+
+.mono{
+  font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+}
+
+/* ---- sky ---- */
+/* Behind everything, above the body's ground colour. The content layers sit
+   at z-index 1 so nothing here can ever land on top of a word. */
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none;display:block}
+header,main,.shipping,footer{position:relative;z-index:1}
+
+/* ---- header ---- */
+header{padding-block:22px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mark{display:flex;align-items:center;gap:11px;text-decoration:none}
+.mark svg{display:block;flex:none}
+.mark span{font-weight:700;letter-spacing:.06em;font-size:14px}
+.bar a.contact{color:var(--muted);text-decoration:none;transition:color .15s}
+.bar a.contact:hover{color:var(--text)}
+
+/* ---- statement ---- */
+main{flex:1;display:flex;align-items:center;padding-block:clamp(64px,14vh,140px)}
+.eyebrow{color:var(--muted);display:block;margin-bottom:28px}
+h1{
+  margin:0 0 24px;
+  font-weight:700;
+  font-size:clamp(32px,6vw,58px);
+  line-height:1.1;
+  letter-spacing:-.025em;
+  max-width:16ch;
+  text-wrap:balance;
+}
+.lede{margin:0;color:var(--muted);font-size:clamp(16px,1.9vw,19px);line-height:1.6;max-width:52ch}
+
+/* ---- currently shipping ---- */
+.shipping{border-top:1px solid var(--line);padding-block:clamp(28px,5vw,40px)}
+.shipping .mono{color:var(--muted);display:block;margin-bottom:18px}
+.product{display:inline-flex;align-items:center;gap:14px;text-decoration:none}
+/* The mark sits back until you reach for it — a reference, not a pitch. */
+.product img{width:40px;height:40px;border-radius:9px;flex:none;opacity:.5;transition:opacity .18s}
+.product .name{font-size:18px;font-weight:500;letter-spacing:-.01em;color:var(--text)}
+.product .arrow{color:var(--muted);opacity:.7;transition:opacity .18s;display:block}
+.product:hover img{opacity:1}
+.product:hover .arrow{opacity:1;color:var(--text)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted)}
+.footrow{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.footrow a{text-decoration:none}
+.footrow a:hover{color:var(--text)}
+/* Stacked rather than strung along one line: a second channel will want a
+   third row, and left-aligned so the shorter one isn't left floating when
+   the footer wraps on a phone. */
+.footlinks{display:flex;flex-direction:column;gap:6px}
+
+/* ---- pages past the front one ---- */
+/* The homepage centres its one statement; a page with a list has to start at
+   the top and run down. */
+main.page{display:block;align-items:initial;padding-block:clamp(40px,7vh,72px)}
+.page h1{max-width:20ch;margin-bottom:18px}
+.page .lede{margin-bottom:0}
+
+.roles{list-style:none;margin:clamp(36px,6vw,56px) 0 0;padding:0}
+.roles li{border-top:1px solid var(--line);padding-block:clamp(20px,3vw,26px)}
+.roles li:last-child{border-bottom:1px solid var(--line)}
+.role-top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.role-top h2{margin:0;font-size:20px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+.pay{color:var(--signal);flex:none}
+.roles p{margin:8px 0 0;color:var(--muted);font-size:15.5px;line-height:1.55;max-width:62ch}
+.apply{
+  display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+  text-decoration:none;color:var(--text);
+}
+.apply span{border-bottom:1px solid var(--signal);padding-bottom:2px}
+.apply:hover{color:var(--signal)}
+.note{
+  margin:clamp(30px,5vw,44px) 0 0;color:var(--muted);font-size:14.5px;
+  line-height:1.6;max-width:58ch;
+}
+
+.navlinks{display:flex;align-items:center;gap:20px}

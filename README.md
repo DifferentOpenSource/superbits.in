@@ -1,7 +1,8 @@
 # superbits.in
 
-The SuperBits Labs site. One static page — `index.html` is the whole thing. No build
-step, no dependencies. Fonts come from Google Fonts; everything else is inline.
+The SuperBits Labs site. Static pages, no build step, no dependencies. Fonts
+come from Google Fonts; `site.css` and `sky.js` are shared by every page, so
+a change to the look or the sky lands everywhere at once.
 
 It is a holding page: it says who we are, that more is coming, and points at
 the product that is already live. Nothing more, on purpose.
@@ -10,7 +11,10 @@ the product that is already live. Nothing more, on purpose.
 
 | | |
 |---|---|
-| `index.html` | the site. Edit this and nothing else. |
+| `index.html` | the front page |
+| `careers/index.html` | the open roles, at `/careers` |
+| `site.css` | every page's stylesheet |
+| `sky.js` | the starfield, shared by every page |
 | `build-artifact.py` | regenerates `dist/artifact.html`, the body-only copy used for a Claude preview link. Optional; run it after editing if you use that preview. |
 | `dist/` | generated, git-ignored. Not what you deploy. |
 

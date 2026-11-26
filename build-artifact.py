@@ -10,8 +10,11 @@ import re, pathlib
 src = pathlib.Path('index.html').read_text(encoding='utf-8')
 
 title = re.search(r'<title>.*?</title>', src, re.S).group(0)
-style = re.search(r'<style>(.*?)</style>', src, re.S).group(1)
+style = pathlib.Path('site.css').read_text(encoding='utf-8')
 body = re.search(r'<body>(.*?)</body>', src, re.S).group(1)
+# The artifact host serves no sibling files, so the sky has to travel inline.
+body = body.replace('<script src="sky.js"></script>',
+                    '<script>' + pathlib.Path('sky.js').read_text(encoding='utf-8') + '</script>')
 
 # A <link> to the font host can't live in the body; @import does the same job
 # from inside the stylesheet, where it has to be the first rule.
